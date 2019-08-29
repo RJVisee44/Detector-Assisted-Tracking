@@ -4,7 +4,9 @@ This repository introduces Detector-Assisted Tracking: a simple yet efficient an
 
 Paper can be found: http://arxiv.org/abs/1908.10406
  -> Submitted to IEEE TBME
-
+ 
+ In its current form, DAT can track one object at a time. In this case, it can detect either the left or right hand. Changing to different objects is as easy as retraining YOLOv2 (See Step 1 repository). Future work consists of extending to multi-object tracking. 
+ 
 # Installation
 
 1. Download YOLO repository. I like AlexeyAB/darknet: `git clone https://github.com/AlexeyAB/darknet.git`
