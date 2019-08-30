@@ -20,9 +20,9 @@ def set_with_yolo(img_list,index,result_file,cls,path_to_images,con_ious):
     first_find = initialize_tracker = True
 
     #Yolo Detection Files
-    model_cfg = "yolov2_DAT.cfg"
-    data_cfg = "yolov2_DAT.data"
-    weights = "yolov2_DAT.weights"
+    model_cfg = "DATmodel/yolov2_DAT.cfg"
+    data_cfg = "DATmodel/yolov2_DAT.data"
+    weights = "DATmodel/yolov2_DAT.weights"
         
     while initialize_tracker == True:        
         
@@ -134,9 +134,9 @@ def check_yolo(path,result_file,cls):
     #Write all results to the same file
     
     #Yolo Detection Files
-    model_cfg = "yolov2_DAT.cfg"
-    data_cfg = "yolov2_DAT.data"
-    weights = "yolov2_DAT.weights"
+    model_cfg = "DATmodel/yolov2_DAT.cfg"
+    data_cfg = "DATmodel/yolov2_DAT.data"
+    weights = "DATmodel/yolov2_DAT.weights"
     
     #Start timer
     timer = cv2.getTickCount()
