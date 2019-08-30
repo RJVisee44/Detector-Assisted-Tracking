@@ -31,4 +31,9 @@ Paper can be found: http://arxiv.org/abs/1908.10406
 5. Build: 
 - `make -j8 && sudo make install`
 
+6. Export path
+- `sudo gedit ~/.bashrc`
+- `export LD_LIBRARY_PATH=/usr/local/lib/${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}`
+- `source ~/.bashrc`
+
 
