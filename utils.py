@@ -51,3 +51,37 @@ def create_tracker(tracker_type):
         tracker = cv2.TrackerGOTURN_create()
         
     return tracker
+
+def bbox_inter_over_union(bbox_gt, bbox_pred):
+    
+    """
+    Function returns the intersection over union (IoU) between a ground truth
+    bounding box (bbox) and predicted bbox
+    """
+    
+    #Determine the (x, y)-coordinates of the intersection rectangle
+    xA = max(int(bbox_gt[0]), int(bbox_pred[0]))
+    yA = max(int(bbox_gt[1]), int(bbox_pred[1]))
+    xB = min(int(bbox_gt[2]), int(bbox_pred[2]))
+    yB = min(int(bbox_gt[3]), int(bbox_pred[3]))
+        
+    #Compute the area of intersection rectangle
+    width = xB - xA + 1
+    height = yB - yA + 1
+    #If no overlap, either width or height negative
+    if width < 0 or height < 0:
+        inter_area = 0
+    else:
+        inter_area = width * height
+    
+    #Compute the area of both the prediction and ground-truth rectangles
+    bboxA_area = (int(bbox_gt[2]) - int(bbox_gt[0]) + 1) * (int(bbox_gt[3]) - int(bbox_gt[1]) + 1)
+    bboxB_area = (int(bbox_pred[2]) - int(bbox_pred[0]) + 1) * (int(bbox_pred[3]) - int(bbox_pred[1]) + 1)
+ 
+    #Compute the intersection over union by taking the intersection
+    #Area and dividing it by the sum of prediction + ground-truth
+    #Areas - the intersection area
+    iou = inter_area / float(bboxA_area + bboxB_area - inter_area)
+ 
+    #Return the intersection over union value
+    return iou
