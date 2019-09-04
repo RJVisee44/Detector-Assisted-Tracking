@@ -9,6 +9,8 @@ Paper can be found: http://arxiv.org/abs/1908.10406
  
  This code runs in Linux. Uses Python wrapper version of YOLOv2 and OpenCV online trackers in Python
  
+ On a NVIDIA® Titan Xp 12 GB RAM GPU our best combination method, YOLO_KCF (100/3/60) achieves 0.87 F1-score at 133 FPS on our custom dataset. 
+ 
 # TO-DO
 - [x] Single-class implementation
 - [ ] Multi-class implementation
@@ -96,3 +98,13 @@ image_path:
 
 # Notes
 darknet.so is created when "make" is performed on [Go to Installation](#installation) Step 1. The file you generate may need to be copied into Detector-Assisted-Tracking/ folder
+
+# Cite
+If you find Detector-Assisted Tracking useful in your research, please consider citing: 
+
+    @article{visee2019effective,
+        Author = {Vis{\'e}e, Ryan J and Likitlersuang, Jirapat and Zariffa, Jos{\'e}},
+        Title = {Fast R-CNN},
+        Journal = {arXiv preprint arXiv:1908.10406},
+        Year = {2019}
+    }
