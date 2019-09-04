@@ -14,6 +14,8 @@ Paper can be found: http://arxiv.org/abs/1908.10406
 1. Download YOLO repository. I like AlexeyAB/darknet: `git clone https://github.com/AlexeyAB/darknet.git`
 2. Download the latest stable version of OpenCV. We used version 3.4.0. [Go to How we installed OpenCV from source](#how-we-installed-opencv-from-source)
 3. In cloned YOLO repository, download our code: `git clone https://github.com/RJVisee44/Detector-Assisted-Tracking.git`
+4. Download weights file for our model at: 
+- Move this into DATModel/
 
 ### How we installed OpenCV from source
 1. Install the required packages:
@@ -47,7 +49,10 @@ YOLOv2 weights file was trained on the entire ANS SCI dataset (167,622 frames). 
 
 If everything is installed, run (example):
 
-`python3 DAT.py --reset_iters 100 --con_ious 3 --check_iters 30 --cls 'L' --tracker_type 'KCF' --img_list 'test.txt' --path_to_images 'ANS SCI/images/'`
+`cd Detector-Assisted-Tracking`
+`python3 DAT.py --ri 100 --coi 3 --chi 30 --cls 'L' --tracker_type 'KCF' --img_list 'test.txt' --image_path 'ANS SCI/images/'`
+
+Saves output to result_cls.txt
 
 What do all these parameters mean? 
 
@@ -74,7 +79,9 @@ tracker_type:
 img_list:
 - .txt file containing image filenames without an extensions or paths. 
 
-path_to_images:
+image_path:
 - path to test images in img_list. 
 
 
+# Notes
+darknet.so is created when "make" is performed on [Go to Installation](#installation) Step 1. The file you generate may need to be copied into Detector-Assisted-Tracking/ folder
