@@ -103,7 +103,7 @@ darknet.so is created when "make" is performed on [Go to Installation](#installa
 If you find Detector-Assisted Tracking useful in your research, please consider citing: 
 
     @article{visee2019effective,
-        Author = {Vis{\'e}e, Ryan J and Likitlersuang, Jirapat and Zariffa, Jos{\'e}},
+        Author = {Visée, Ryan J and Likitlersuang, Jirapat and Zariffa, José},
         Title = {Fast R-CNN},
         Journal = {arXiv preprint arXiv:1908.10406},
         Year = {2019}
