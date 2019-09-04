@@ -20,16 +20,13 @@ def yolo_tracker(ri,coi,chi,cls,tracker_type,img_list,path_to_images):
         
     with open(img_list) as f: 
         img_list = f.read().splitlines()
-    
-    result_file.write("%s\n" % img_list[0])
-    
-   
+        
     ###############################
     #   Predict bounding boxes 
     ###############################
     
     print("Initializing tracker using YOLO")
-    i = 1
+    i = 0
     #Check to see if this frame contains a hand, otherwise load the next frame
     initial, i = set_with_yolo(img_list, i, result_file, cls,path_to_images, con_ious=coi)
     
@@ -99,7 +96,6 @@ def yolo_tracker(ri,coi,chi,cls,tracker_type,img_list,path_to_images):
                 pred_bbox = int(bbox[0]),int(bbox[1]), int(bbox[0] + bbox[2]), int(bbox[1] + bbox[3])
                 pred_bbox = fix_bounds(pred_bbox[0],pred_bbox[1],pred_bbox[2],pred_bbox[3])
                 result_file.write("%s track: %s %s\n" % (tracker_type, cls, np.array(pred_bbox)))
-                result_file.close()
                 
                 # Tracking success for tracker 1
                 p1,p2 = (int(pred_bbox[0]),int(pred_bbox[1])), (int(pred_bbox[2]),int(pred_bbox[3]))
@@ -152,9 +148,9 @@ def yolo_tracker(ri,coi,chi,cls,tracker_type,img_list,path_to_images):
 def parse_args():
     '''parse args'''
     parser = argparse.ArgumentParser()
-    parser.add_argument('--reset_iters', dest='ri', type=int, default=0, help='Reset Iterations')
-    parser.add_argument('--con_ious', dest='coi',type=int, default=0, help='Consecutive IoUs before Initialization')
-    parser.add_argument('--check_iters', dest='chi', type=int, default=0, help='Check Iterations')
+    parser.add_argument('--ri', dest='ri', type=int, default=0, help='Reset Iterations')
+    parser.add_argument('--coi', dest='coi',type=int, default=0, help='Consecutive IoUs before Initialization')
+    parser.add_argument('--chi', dest='chi', type=int, default=0, help='Check Iterations')
     parser.add_argument('--cls',dest='cls',type=str,default=None,help='Object for tracking')
     parser.add_argument('--tracker_type',dest='tracker_type',type=str,default='KCF',help='Tracker to combine with YOLO. Try: "MF","KCF","MIL","OLB"')
     parser.add_argument('--img_list', dest='img_list', type=str, default=0, help='Path to list of filename test images')
