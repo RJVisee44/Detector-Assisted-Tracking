@@ -12,6 +12,13 @@ Paper can be found: http://arxiv.org/abs/1908.10406
 # TO-DO
 - [x] Single-class implementation
 - [ ] Multi-class implementation
+- [ ] Make dataset public
+
+# Go-To:
+1. [Installation](#installation)
+2. [Install OpenCV from source](#how-we-installed-opencv-from-source)
+3. [How to Use](#how-to-use)
+4. [Notes](#notes)
 
 # Installation
 
