@@ -25,6 +25,7 @@ Paper can be found: http://arxiv.org/abs/1908.10406
 # Installation
 
 1. Download YOLO repository. I like AlexeyAB/darknet: `git clone https://github.com/AlexeyAB/darknet.git`
+- In Makefile: Have GPU,CUDNN,CUDNN_HALF, OPENCV,OPENMP, and LIBSO all set to 1
 2. Download the latest stable version of OpenCV. We used version 3.4.0. [Go to How we installed OpenCV from source](#how-we-installed-opencv-from-source)
 3. In cloned YOLO repository, download our code: `git clone https://github.com/RJVisee44/Detector-Assisted-Tracking.git`
 4. Download weights file for our model at: 
