@@ -10,8 +10,8 @@ Paper can be found: http://arxiv.org/abs/1908.10406
  This code runs in Linux. Uses Python wrapper version of YOLOv2 and OpenCV online trackers in Python
  
 # TO-DO
-[x] Single-class implementation
-[] Multi-class implementation
+- [x] Single-class implementation
+- [ ] Multi-class implementation
 
 # Installation
 
