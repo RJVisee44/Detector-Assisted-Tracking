@@ -30,8 +30,8 @@ Paper can be found: http://arxiv.org/abs/1908.10406
 - In Makefile: Have GPU,CUDNN,CUDNN_HALF, OPENCV,OPENMP, and LIBSO all set to 1
 2. Download the latest stable version of OpenCV. We used version 3.4.0. [Go to How we installed OpenCV from source](#how-we-installed-opencv-from-source)
 3. In cloned YOLO repository, download our code: `git clone https://github.com/RJVisee44/Detector-Assisted-Tracking.git`
-4. Download weights file for our model at: 
-- Move this into DATModel/
+4. Download weights file for our model at: [Link](https://utoronto-my.sharepoint.com/:u:/g/personal/ryan_visee_mail_utoronto_ca/ESS6Dbwt7PVNspmcjy7E6hEBavaKzMQrUOUR3DpAwTHbHQ?e=8xif5n) 
+- Move "yolov2_DAT.weights" into DATModel/
 
 ### How we installed OpenCV from source
 1. Install the required packages:
