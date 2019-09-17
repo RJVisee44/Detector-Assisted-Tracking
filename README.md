@@ -5,7 +5,9 @@ This repository introduces Detector-Assisted Tracking: a simple yet efficient an
 Paper can be found: http://arxiv.org/abs/1908.10406
  -> Submitted to IEEE TBME
  
- In its current form, DAT can track one object at a time. In this case, it can detect either the left or right hand. Changing to different objects is as easy as retraining YOLOv2 (See Step 1 repository). Future work consists of extending to multi-object tracking. 
+ DAT.py can track one object at a time. In this case, it can detect either the left or right hand. Changing to different objects is as easy as retraining YOLOv2 (See Step 1 repository). Future work consists of extending to multi-object tracking. 
+ 
+ DAT_multi.py can track both the left and right hand at the same time. There is a slight decrease in accuracy but large decrease in speed.
  
  This code runs in Linux. Uses Python wrapper version of YOLOv2 and OpenCV online trackers in Python
  
@@ -13,14 +15,14 @@ Paper can be found: http://arxiv.org/abs/1908.10406
  
 # TO-DO
 - [x] Single-class implementation
-- [ ] Multi-class implementation
-- [ ] Make dataset public
+- [x] Multi-class implementation
 
 # Go-To:
 1. [Installation](#installation)
 2. [Install OpenCV from source](#how-we-installed-opencv-from-source)
-3. [How to Use](#how-to-use)
-4. [Notes](#notes)
+3. [How to Use Single-Hand DAT](#how-to-use-single-hand-dat)
+4. [How to Use Multi-Hand DAT](#how-to-use-multi-hand-dat)
+5. [Notes](#notes)
 
 # Installation
 
@@ -52,7 +54,7 @@ Paper can be found: http://arxiv.org/abs/1908.10406
 - `export LD_LIBRARY_PATH=/usr/local/lib/${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}`
 - `source ~/.bashrc`
 
-# How to Use
+# How to Use Single Hand DAT
 Within DATModel/ is 4 files:
 1. model_cfg = "yolov2_DAT.cfg"
 2. data_cfg = "yolov2_DAT.data"
@@ -96,6 +98,13 @@ img_list:
 image_path:
 - path to test images in img_list. 
 
+# How to Use Multi Hand DAT
+Introducing support to track both hands at the same time, with competitive accuracy. Uses same weights as for [Single Hand DAT](#how-to-use-single-hand-dat)
+
+`cd Detector-Assisted-Tracking`
+`python3 DAT_multi.py --ri 100 --coi 3 --chi 30 --tracker_type 'KCF' --img_list 'test.txt' --image_path 'ANS SCI/images/'`
+
+Saves output to result_LR.txt
 
 # Notes
 darknet.so is created when "make" is performed on [Go to Installation](#installation) Step 1. The file you generate may need to be copied into Detector-Assisted-Tracking/ folder
