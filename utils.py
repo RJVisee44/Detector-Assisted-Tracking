@@ -35,22 +35,69 @@ def fix_bounds(xmin,ymin,xmax,ymax):
         ymin = 0
     return int(xmin),int(ymin),int(xmax),int(ymax)
 
-def create_tracker(tracker_type):
+def create_tracker(tracker_type, both=False):
     #This function modulates the call to create a tracker
-    if tracker_type == 'OLB':
-        tracker = cv2.TrackerBoosting_create()
-    elif tracker_type == 'MIL':
-        tracker = cv2.TrackerMIL_create()
-    elif tracker_type == 'KCF':
-        tracker = cv2.TrackerKCF_create()
-    elif tracker_type == 'TLD':
-        tracker = cv2.TrackerTLD_create()
-    elif tracker_type == 'MF':
-        tracker = cv2.TrackerMedianFlow_create()
+    if both == True:    
+        if tracker_type == 'OLB':
+            tracker_l = cv2.TrackerBoosting_create()
+            tracker_r = cv2.TrackerBoosting_create()
+        elif tracker_type == 'MIL':
+            tracker_l = cv2.TrackerMIL_create()
+            tracker_r = cv2.TrackerMIL_create()
+        elif tracker_type == 'KCF':
+            tracker_l = cv2.TrackerKCF_create()
+            tracker_r = cv2.TrackerKCF_create()
+        elif tracker_type == 'TLD':
+            tracker_l = cv2.TrackerTLD_create()
+            tracker_r = cv2.TrackerTLD_create()
+        elif tracker_type == 'MF':
+            tracker_l = cv2.TrackerMedianFlow_create()
+            tracker_r = cv2.TrackerMedianFlow_create()
+        else:
+            tracker = cv2.TrackerGOTURN_create()
+            
+        return tracker_l,tracker_r
+    
     else:
-        tracker = cv2.TrackerGOTURN_create()
+        if tracker_type == 'OLB':
+            tracker = cv2.TrackerBoosting_create()
+        elif tracker_type == 'MIL':
+            tracker = cv2.TrackerMIL_create()
+        elif tracker_type == 'KCF':
+            tracker = cv2.TrackerKCF_create()
+        elif tracker_type == 'TLD':
+            tracker = cv2.TrackerTLD_create()
+        elif tracker_type == 'MF':
+            tracker = cv2.TrackerMedianFlow_create()
+        else:
+            tracker = cv2.TrackerGOTURN_create()
+            
+        return tracker
+
+def initialize_tracker(initial,tracker_type,image_path):
+    if (initial[0] != (0,0,0,0)) and (initial[1] != (0,0,0,0)):
+        frame = cv2.imread(image_path)
+        tracker_l,tracker_r = create_tracker(tracker_type,both=True)
+        okl,okr = tracker_l.init(frame, initial[0]),tracker_r.init(frame, initial[1])         
+    
+        if (okl == False) or (okr == False):
+            print("Unable to initialize tracker")
+            
+    elif initial[0] != (0,0,0,0):
+        frame = cv2.imread(image_path)
+        tracker_l,tracker_r = create_tracker(tracker_type,both=True)
+        okl = tracker_l.init(frame, initial[0])
+        if okl == False:
+            print("Unable to initialize tracker")
         
-    return tracker
+    elif initial[1] != (0,0,0,0):
+        frame = cv2.imread(image_path)
+        tracker_l,tracker_r = create_tracker(tracker_type,both=True)
+        okr = tracker_r.init(frame, initial[1])
+        if okr == False:
+            print("Unable to initialize tracker")   
+    
+    return tracker_l, tracker_r
 
 def bbox_inter_over_union(bbox_gt, bbox_pred):
     
