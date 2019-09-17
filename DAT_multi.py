@@ -291,3 +291,20 @@ def yolo_tracker(ri,coi,chi,tracker_type,img_list,path_to_images):
     
     cv2.destroyAllWindows()
     result_file.close()
+    
+def parse_args():
+    '''parse args'''
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--ri', dest='ri', type=int, default=0, help='Reset Iterations')
+    parser.add_argument('--coi', dest='coi',type=int, default=0, help='Consecutive IoUs before Initialization')
+    parser.add_argument('--chi', dest='chi', type=int, default=0, help='Check Iterations')
+    parser.add_argument('--cls',dest='cls',type=str,default=None,help='Object for tracking')
+    parser.add_argument('--tracker_type',dest='tracker_type',type=str,default='KCF',help='Tracker to combine with YOLO. Try: "MF","KCF","MIL","OLB"')
+    parser.add_argument('--img_list', dest='img_list', type=str, default=0, help='Path to list of filename test images')
+    parser.add_argument('--image_path',dest="path_to_images",type=str,default=None,help='Absolute path to images')
+    return parser.parse_args()
+
+if __name__ == "__main__":
+    args = parse_args()
+    print('Multi-hand DAT using %s for %s_%s_%s' % (args.tracker_type, args.ri, args.coi, args.chi))
+    yolo_tracker(args.ri,args.coi,args.chi,args.tracker_type,args.img_list,args.path_to_images)
