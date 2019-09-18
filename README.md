@@ -3,9 +3,8 @@
 This repository introduces Detector-Assisted Tracking: a simple yet efficient and accurate combination between You Only Look Once (YOLO) version 2 (YOLOv2) and OpenCV online trackers (Median Flow (MF), Kernelized Correlation Filter (KCF), Multiple Instance Learning (MIL), Online Boosting (OLB)).
 
 Paper can be found: http://arxiv.org/abs/1908.10406
- -> Submitted to IEEE TBME
  
- DAT.py can track one object at a time. In this case, it can detect either the left or right hand. Changing to different objects is as easy as retraining YOLOv2 (See Step 1 repository). Future work consists of extending to multi-object tracking. 
+ DAT.py can track one object at a time. In this case, it can detect either the left or right hand. Changing to different objects is as easy as retraining YOLOv2 (See Step 1 [repository](https://github.com/AlexeyAB/darknet)).
  
  DAT_multi.py can track both the left and right hand at the same time. There is a slight decrease in accuracy but large decrease in speed.
  
@@ -66,6 +65,7 @@ YOLOv2 weights file was trained on the entire ANS SCI dataset (167,622 frames). 
 If everything is installed, run (example):
 
 `cd Detector-Assisted-Tracking`
+
 `python3 DAT.py --ri 100 --coi 3 --chi 30 --cls 'L' --tracker_type 'KCF' --img_list 'test.txt' --image_path 'ANS SCI/images/'`
 
 Saves output to result_cls.txt
@@ -102,6 +102,7 @@ image_path:
 Introducing support to track both hands at the same time, with competitive accuracy. Uses same weights as for [Single Hand DAT](#how-to-use-single-hand-dat)
 
 `cd Detector-Assisted-Tracking`
+
 `python3 DAT_multi.py --ri 100 --coi 3 --chi 30 --tracker_type 'KCF' --img_list 'test.txt' --image_path 'ANS SCI/images/'`
 
 Saves output to result_LR.txt
